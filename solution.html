@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milana Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .nav-link {
+            @apply text-gray-600 hover:text-blue-500 transition duration-300;
+        }
+        .nav-link-active {
+            @apply text-blue-600 font-semibold;
+        }
+        .hamburger, .close-menu {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .slide-out {
+            @apply fixed top-0 left-0 w-1/2 h-full bg-white shadow-md transition-transform transform -translate-x-full;
+        }
+        .slide-in {
+            transform: translateX(0);
+        }
+        .hero {
+            @apply relative h-screen bg-cover bg-center flex items-center justify-center text-white;
+        }
+        .carousel {
+            @apply absolute inset-0 w-full h-full z-0;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <img src="path/to/logo.png" alt="Milana Academy Logo" class="h-10">
+            <nav class="hidden md:flex space-x-4">
+                <a href="home.html" class="nav-link nav-link-active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="admissions.html" class="nav-link">Admissions</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="get-started.html" class="btn bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300">Get Started</a>
+            </nav>
+            <span class="hamburger md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </span>
+        </div>
+        <div class="slide-out" id="mobile-menu">
+            <div class="px-4 py-4 flex justify-between items-center">
+                <img src="path/to/logo.png" alt="Milana Academy Logo" class="h-10">
+                <span class="close-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </span>
+            </div>
+            <nav class="flex flex-col space-y-4 px-4">
+                <a href="home.html" class="nav-link nav-link-active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="admissions.html" class="nav-link">Admissions</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="get-started.html" class="btn bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="carousel" id="carousel">
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('images/images\ \(4\).jpeg');"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('images/images\ \(3\).jpeg');"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('images/images\ \(1\).jpeg');"></div>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-bold">Welcome to Milana Academy</h1>
+            <p class="mt-4 text-lg md:text-2xl">Empowering students for a brighter future</p>
+            <a href="get-started.html" class="mt-8 inline-block bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300">Get Started</a>
+        </div>
+    </section>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const closeMenu = document.querySelector('.close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('slide-in');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('slide-in');
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#carousel > div');
+        const totalSlides = slides.length;
+
+        setInterval(() => {
+            slides[currentSlide].classList.remove('opacity-100');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].classList.add('opacity-100');
+        }, 5000);
+
+        slides.forEach(slide => {
+            slide.classList.add('transition-opacity', 'duration-1000', 'ease-in-out', 'opacity-0');
+        });
+
+        slides[currentSlide].classList.add('opacity-100');
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milana Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+    <style>
+        .nav-link {
+            @apply text-gray-600 hover:text-blue-500 transition duration-300;
+        }
+
+        .nav-link-active {
+            @apply text-blue-600 font-semibold;
+        }
+
+        .hero {
+            @apply relative h-screen bg-cover bg-center flex items-center justify-center text-white;
+        }
+
+        .carousel {
+            @apply absolute inset-0 w-full h-full z-0;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="./images/logo.png" alt="Milana Academy Logo" class="h-10">
+            </div>
+            <nav class="flex space-x-4">
+                <a href="index.html" class="nav-link nav-link-active">Home</a>
+                <a href="./pages/about.html" class="nav-link">About</a>
+                <a href="./pages/admissions.html" class="nav-link">Admissions</a>
+                <a href="./pages/contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div>
+                <a href="get-started.html"
+                    class="btn bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300">Get
+                    Started</a>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    <section class="hero">
+        <div class="carousel" id="carousel">
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style="background-image: url(images/images\ \(1\).jpeg);"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style="background-image: url('images/images\ \(3\).jpeg');"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style="background-image: url('images/images\ \(4\).jpeg');"></div>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-bold">Welcome to Milana Academy</h1>
+            <p class="mt-4 text-lg md:text-2xl">Empowering students for a brighter future</p>
+            <a href="get-started.html"
+                class="mt-8 inline-block bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300">Get
+                Started</a>
+        </div>
+    </section>
+
+    <script>
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#carousel > div');
+        const totalSlides = slides.length;
+
+        setInterval(() => {
+            slides[currentSlide].classList.remove('opacity-100');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].classList.add('opacity-100');
+        }, 5000);
+
+        slides.forEach(slide => {
+            slide.classList.add('transition-opacity', 'duration-1000', 'ease-in-out', 'opacity-0');
+        });
+
+        slides[currentSlide].classList.add('opacity-100');
+    </script>
+
+
+    <script>
+        // Optional JavaScript to add 'nav-link-active' class to the active link
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('.nav-link');
+        const menuLength = menuItem.length;
+        for (let i = 0; i < menuLength; i++) {
+            if (menuItem[i].href === currentLocation) {
+                menuItem[i].classList.add('nav-link-active');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
